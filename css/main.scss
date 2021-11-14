@@ -1,0 +1,161 @@
+@import "abstracts/_mixins.scss";
+
+.calculator{
+    font-family: 'Inter', sans-serif;
+    background: #F0F0F0;
+    margin: 0;
+    padding: 0;
+    .main{
+        max-width: 728px;
+        margin: 0 auto;
+        .input-box{
+            background: #141414;
+            height: 284px;
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            @include mobile{
+                height: 35vh;
+            }
+            .input{
+                width: 100%;
+                margin: 2rem 0 0 0;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                font-size: 5rem;
+                color: #F5F5F5;
+                text-align: right;
+                overflow-x: scroll;
+
+                height: 5rem;
+                &:focus{
+                    outline: none;
+                    
+                }
+
+            }
+          
+        }
+        .buttons{
+            padding: 1rem 0;
+            background: #F0F0F0;
+            @include mobile{
+                height: 65vh;
+                padding: 2.17vh 0;
+            }
+        }
+        .layer{
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.25rem;
+            position: relative;
+            @include mobile{
+                margin-bottom: 2.71vh;
+            }
+            .button{
+                width: 72px;
+                height: 72px;
+                background: #F0F0F0;
+                color: #505050;
+                box-shadow: -4px -4px 12px #FFFFFF, 4px 4px 12px rgba(209, 205, 199, 0.5);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 500;
+                font-size: 32px;
+                line-height: 33px;
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+                @include mobile{
+                    width: 10vh;
+                    height: 10vh;
+                     font-size: 4.34vh;
+                }
+            }
+            .pressed{
+                background: #E6E5E5;
+                box-shadow: inset 4px 4px 12px rgba(209, 205, 199, 0.5), inset -4px -4px 12px #FFFFFF;
+            }
+            .inactive{
+                background: #F0F0F0;
+                color: #B3B3B3;
+                box-shadow: none;
+                pointer-events: none;
+                box-shadow: inset 15.85px 15.8px 47px 0 rgba(255, 255, 255, 1), inset 15.85px 15.8px 47px 0 rgba(209, 205, 199, 0.5);
+            }
+            .equal{
+                background: #FBD928;
+            }
+            .hidden {
+                opacity: 0;
+            }
+            .clear{
+                font-size: 27px;
+                color: #808080;
+                @include mobile{
+                    font-size: 3.66vh;
+                }
+            }
+            .operator{
+                color: #808080;
+            }
+            .multiply{
+                color: transparent;
+                &::after, &::before{
+                    content: '';
+                    width: 20px;
+                    height: 3px;
+                    background: #808080;
+                    transform: rotate(-135deg);
+                    position: absolute;
+                }
+                &::before{
+                    transform: rotate(135deg);
+                }
+            }
+            .minus{
+                @extend .multiply;
+                &::before{
+                    content: none;
+                }
+                &::after{
+                    transform: rotate(0deg);
+                }
+            }
+            .plus{
+                @extend .multiply;
+                &::after{
+                    transform: rotate(0deg);
+                }
+                &::before{
+                    transform: rotate(-90deg);
+                }
+            }
+            .dot{
+                @extend .multiply;
+                &::after, &::before{
+                    width: 6px;
+                    height: 6px;
+                    background: #808080;
+                    border-radius: 50%;
+                } 
+            }
+            .equal{
+                @extend .multiply;
+                &::after{
+                    transform: rotate(0deg);
+                    top: 55%;
+                }
+                &::before{
+                    top: 45%;
+                    transform: rotate(0deg);
+                }
+            }
+           
+        }
+        
+        
+    }
+}
