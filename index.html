@@ -12,13 +12,15 @@
 <body class="calculator">
     <main class="main">
         <div class="input-box">
-            <div class="input" id="input"></div>
+            <div class="input" id="input">
+              <span></span>
+            </div>
         </div>
         <div class="buttons">
             <div class="layer">
                 <div class="button clear" id="clear">AC</div>
-                <div class="button operator inactive" id="">+/-</div>
-                <div class="button operator inactive" id="percent">%</div>
+                <div class="button operator inactive plusminus" id=""></div>
+                <div class="button operator inactive percentage" id="percent"></div>
                 <div class="button operator">&divide;</div>
             </div>
             <div class="layer">
@@ -55,28 +57,48 @@
         $(this).addClass("pressed");
          setTimeout(function(){
           $('.button').removeClass("pressed");
-        },1000);
+        },500);
         });
     });
+
+    if(/Android/.test(navigator.appVersion)) {
+   window.addEventListener("resize", function() {
+     if(document.activeElement.tagName=="INPUT" || document.activeElement.tagName=="TEXTAREA") {
+       document.activeElement.scrollIntoView();
+     }
+  })
+} 
 </script>
 <script>
 
+
 "use strict";
 
-const input = document.getElementById('input'), // input/output button
-  number = document.querySelectorAll('.number'), // number buttons
-  operator = document.querySelectorAll('.operator'), // operator buttons
-  result = document.getElementById('result'), // equal button
-  clear = document.getElementById('clear'), // clear button
-  resultDisplayed = false; // flag to keep an eye on what output is displayed
-console.log(number);
+const input = document.querySelector('.input span'), 
+  number = document.querySelectorAll('.number'), 
+  operator = document.querySelectorAll('.operator'), 
+  result = document.getElementById('result'),
+  clear = document.getElementById('clear'), 
+  inputdiv = document.querySelector('.input'),
+ 
+  resultDisplayed = false; 
+
+
+  // var inputwidth = inputdiv.offsetWidth;
+  // console.log(inputwidth);
 // adding click handlers to number buttons
 for (var i = 0; i < number.length; i++) {
   number[i].addEventListener("click", function(e) {
-
+    setTimeout(function(){
+     const inputwidth = inputdiv.offsetWidth,
+          spanwidth = input.offsetWidth,
+         width = spanwidth - inputwidth;
+       inputdiv.scrollLeft = width;
+    }, 100);
     // storing current input string and its last character in variables - used later
     var currentString = input.innerHTML;
     var lastChar = currentString[currentString.length - 1];
+
 
     // if result is not diplayed, just keep adding
     if (resultDisplayed === false) {
@@ -100,6 +122,12 @@ for (var i = 0; i < number.length; i++) {
 // adding click handlers to number buttons
 for (var i = 0; i < operator.length; i++) {
   operator[i].addEventListener("click", function(e) {
+    setTimeout(function(){
+     const inputwidth = inputdiv.offsetWidth,
+          spanwidth = input.offsetWidth,
+         width = spanwidth - inputwidth;
+       inputdiv.scrollLeft = width;
+    }, 100);
 
     // storing current input string and its last character in variables - used later
     var currentString = input.innerHTML;
@@ -109,6 +137,7 @@ for (var i = 0; i < operator.length; i++) {
     if (lastChar === "+" || lastChar === "-" || lastChar === "×" || lastChar === "÷") {
       var newString = currentString.substring(0, currentString.length - 1) + e.target.innerHTML;
       input.innerHTML = newString;
+    
     } else if (currentString.length == 0) {
       // if first key pressed is an opearator, don't do anything
       console.log("enter a number first");
@@ -122,7 +151,12 @@ for (var i = 0; i < operator.length; i++) {
 
 // on click of 'equal' button
 result.addEventListener("click", function() {
-
+  setTimeout(function(){
+     const inputwidth = inputdiv.offsetWidth,
+          spanwidth = input.offsetWidth,
+         width = spanwidth - inputwidth;
+       inputdiv.scrollLeft = width;
+    }, 100);
   // this is the string that we will be processing eg. -10+26+33-56*34/23
   var inputString = input.innerHTML;
 
@@ -174,11 +208,17 @@ result.addEventListener("click", function() {
 
   input.innerHTML = numbers[0]; // displaying the output
 
-  resultDisplayed = true; // turning flag if result is displayed
+  // resultDisplayed = true; // turning flag if result is displayed
 });
 
 // clearing the input on press of clear
 clear.addEventListener("click", function() {
+  setTimeout(function(){
+     const inputwidth = inputdiv.offsetWidth,
+          spanwidth = input.offsetWidth,
+         width = spanwidth - inputwidth;
+       inputdiv.scrollLeft = width;
+    }, 100);
   input.innerHTML = "";
 })
 </script>

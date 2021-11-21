@@ -39,11 +39,8 @@
   color: #F5F5F5;
   text-align: right;
   overflow-x: scroll;
-  height: 5rem;
-}
-
-.calculator .main .input-box .input:focus {
-  outline: none;
+  height: 6.1rem;
+  white-space: nowrap;
 }
 
 .calculator .main .buttons {
@@ -62,8 +59,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   margin-bottom: 1.25rem;
   position: relative;
 }
@@ -94,6 +92,7 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 33px;
+  font-weight: normal;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
@@ -102,7 +101,7 @@
   .calculator .main .layer .button {
     width: 10vh;
     height: 10vh;
-    font-size: 4.34vh;
+    font-size: 8.533333vw;
   }
 }
 
@@ -143,6 +142,7 @@
 
 .calculator .main .layer .operator {
   color: #808080;
+  position: relative;
 }
 
 .calculator .main .layer .multiply, .calculator .main .layer .minus, .calculator .main .layer .plus, .calculator .main .layer .dot, .calculator .main .layer .equal {
@@ -200,5 +200,23 @@
   top: 45%;
   -webkit-transform: rotate(0deg);
           transform: rotate(0deg);
+}
+
+.calculator .main .layer .percentage::after, .calculator .main .layer .plusminus::after {
+  content: url(../icon/percentage.svg);
+  display: block;
+  width: 10vh;
+  height: 10vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.calculator .main .layer .plusminus::after {
+  content: url(../icon/plus.svg);
+  -webkit-transform: translate(-24%, -24%);
+          transform: translate(-24%, -24%);
 }
 /*# sourceMappingURL=main.css.map */

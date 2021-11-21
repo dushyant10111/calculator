@@ -27,13 +27,8 @@
                 color: #F5F5F5;
                 text-align: right;
                 overflow-x: scroll;
-
-                height: 5rem;
-                &:focus{
-                    outline: none;
-                    
-                }
-
+                height: 6.1rem;
+                white-space: nowrap;
             }
           
         }
@@ -47,7 +42,7 @@
         }
         .layer{
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly;
             margin-bottom: 1.25rem;
             position: relative;
             @include mobile{
@@ -66,12 +61,13 @@
                 font-weight: 500;
                 font-size: 32px;
                 line-height: 33px;
+                font-weight: normal;
                 cursor: pointer;
                 -webkit-tap-highlight-color: transparent;
                 @include mobile{
                     width: 10vh;
                     height: 10vh;
-                     font-size: 4.34vh;
+                     font-size: 8.533333vw;
                 }
             }
             .pressed{
@@ -100,6 +96,7 @@
             }
             .operator{
                 color: #808080;
+                position: relative;
             }
             .multiply{
                 color: transparent;
@@ -151,6 +148,25 @@
                 &::before{
                     top: 45%;
                     transform: rotate(0deg);
+                }
+            }
+            .percentage{
+                &::after{
+                    content: url(../icon/percentage.svg);
+                    display: block;
+                    width: 10vh;
+                    height: 10vh;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+            .plusminus{
+                @extend .percentage ;
+                &::after{
+                    content: url(../icon/plus.svg);
+                    transform: translate(-24%, -24%);
                 }
             }
            
